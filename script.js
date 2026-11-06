@@ -590,3 +590,94 @@ if (productDropdown && productDropdownToggle) {
   });
 
 }
+
+
+
+(function () {
+  function initializeBrandSpotlight() {
+    const brandSpotlight = document.querySelector(
+      ".brand-spotlight"
+    );
+
+    if (!brandSpotlight) return;
+
+    const brandTabs = Array.from(
+      brandSpotlight.querySelectorAll(".brand-tab")
+    );
+
+    const brandPanelContainer = brandSpotlight.querySelector(
+      ".brand-spotlight-panels"
+    );
+
+    if (!brandPanelContainer || brandTabs.length === 0) return;
+
+    const brandPanels = Array.from(
+      brandPanelContainer.querySelectorAll(".brand-detail")
+    );
+
+    brandTabs.forEach((tab) => {
+      tab.classList.remove("is-active");
+      tab.removeAttribute("role");
+      tab.removeAttribute("aria-selected");
+      tab.removeAttribute("tabindex");
+      tab.setAttribute("aria-expanded", "false");
+    });
+
+    brandPanels.forEach((panel) => {
+      panel.setAttribute("role", "region");
+      panel.hidden = true;
+    });
+
+    brandPanelContainer.hidden = true;
+    brandPanelContainer.style.display = "none";
+    brandSpotlight.classList.remove("is-open");
+
+    brandTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const isCurrentlyOpen =
+          tab.getAttribute("aria-expanded") === "true";
+
+        const shouldOpen = !isCurrentlyOpen;
+
+        brandTabs.forEach((button) => {
+          const isActive = shouldOpen && button === tab;
+
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute(
+            "aria-expanded",
+            String(isActive)
+          );
+        });
+
+        brandPanels.forEach((panel) => {
+          const isSelectedPanel =
+            panel.id === tab.getAttribute("aria-controls");
+
+          panel.hidden = !(shouldOpen && isSelectedPanel);
+        });
+
+        brandPanelContainer.hidden = !shouldOpen;
+
+        if (shouldOpen) {
+          brandPanelContainer.style.removeProperty("display");
+        } else {
+          brandPanelContainer.style.display = "none";
+        }
+
+        brandSpotlight.classList.toggle(
+          "is-open",
+          shouldOpen
+        );
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeBrandSpotlight
+    );
+  } else {
+    initializeBrandSpotlight();
+  }
+})();
