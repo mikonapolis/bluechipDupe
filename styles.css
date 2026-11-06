@@ -2294,293 +2294,452 @@ ol:last-child {
 
 
 
+
+
 .brands-page .brands-hero {
-  min-height: 340px;
-  padding: 90px 0 80px;
-  background: linear-gradient(
-    120deg,
-    #171b1f,
-    #292f34
-  );
+  position: relative;
+  min-height: 300px;
+  padding: 85px 0 80px;
+  background: linear-gradient(125deg, #171b1f, #29343b);
+  overflow: hidden;
+}
+
+.brands-page .brands-hero::after {
+  content: "";
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  top: -190px;
+  right: -100px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 65px rgba(255,255,255,0.025),
+    0 0 0 130px rgba(255,255,255,0.015);
+  pointer-events: none;
+}
+
+.brands-page .brands-hero-layout {
+  position: relative;
+  z-index: 1;
 }
 
 .brands-page .brands-hero h1 {
-  margin-bottom: 24px;
-  font-size: clamp(42px, 5vw, 72px);
+  margin-bottom: 20px;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 .brands-page .brands-hero p:last-child {
-  max-width: 720px;
-  color: #d6dadd;
-  font-size: 18px;
-  line-height: 1.6;
+  max-width: 680px;
+  color: #d3dadd;
+  font-size: 17px;
+  line-height: 1.75;
 }
 
-
-
-
-.brands-page .brands-listing {
-  padding: 90px 0;
-  background: #ffffff;
+.brands-page .brand-spotlight-section {
+  padding: 90px 0 110px;
+  background: #f6f8fa;
 }
 
+.brands-page .brand-spotlight-section .section-heading {
+  margin-bottom: 48px;
+}
 
-.brands-page .partner-grid {
+.brands-page .brand-spotlight-section .section-heading h2 {
+  max-width: 680px;
+  font-size: clamp(32px, 3.6vw, 46px);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.brands-page .brand-spotlight {
+  width: 100%;
+}
+
+.brands-page .brand-selector {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  align-items: stretch;
+  gap: 18px;
+  margin-bottom: 20px;
 }
 
-
-
-
-body.brands-page .partner-card {
+.brands-page .brand-tab {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-
+  align-items: stretch;
+  text-align: left;
   min-width: 0;
-  min-height: 650px;
-  padding: 30px;
-
-  border: none;
-  border-radius: 8px;
-
-  
-  background: #eaf0f5;
-
-  
-  color: #101820;
-
-  text-decoration: none;
+  min-height: 205px;
+  padding: 20px;
+  border: 1px solid #e0e6e9;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #171b1f;
+  cursor: pointer;
   overflow: hidden;
+  box-shadow: 0 4px 18px rgba(22, 34, 43, 0.035);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
 
+.brands-page .brand-tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #f26422;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.brands-page .brand-tab.is-active,
+.brands-page .brand-tab[aria-selected="true"] {
+  background: #ffffff;
+  border-color: #f26422;
+  box-shadow: 0 12px 30px rgba(22,34,43,0.09);
+}
+
+.brands-page .brand-tab.is-active::after,
+.brands-page .brand-tab[aria-selected="true"]::after {
+  transform: scaleX(1);
+}
+
+.brands-page .brand-tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  color: #73828b;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.065em;
+  line-height: 1.4;
+}
+
+.brands-page .brand-tab-indicator {
+  display: block;
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cdd5d9;
   transition:
     background-color 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-
-
-
-
-@media (hover: hover) {
-  body.brands-page .partner-card:hover {
-    background: #061e19;
-    color: #ffffff;
-
-    transform: translateY(-6px);
-
-    box-shadow:
-      0 15px 30px rgba(0, 0, 0, 0.15);
-  }
-
-  
-  body.brands-page .partner-card:hover
-  .partner-card-bottom p {
-    color: #ffffff;
-  }
-
- 
-  body.brands-page .partner-card:hover
-  .partner-card-link {
-    color: #ffffff;
-  }
+.brands-page .brand-tab.is-active .brand-tab-indicator,
+.brands-page .brand-tab[aria-selected="true"]
+.brand-tab-indicator {
+  background: #f26422;
+  box-shadow: 0 0 0 4px rgba(242,100,34,0.12);
 }
 
-
-body.brands-page .partner-card:focus-visible {
-  background: #061e19;
-  color: #ffffff;
-}
-
-body.brands-page .partner-card:focus-visible
-.partner-card-bottom p,
-body.brands-page .partner-card:focus-visible
-.partner-card-link {
-  color: #ffffff;
-}
-
-
-
-
-body.brands-page .partner-logo {
+.brands-page .brand-tab-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 100%;
-  height: 100px;
-  min-height: 100px;
-
-  margin-bottom: 25px;
-
-  background: transparent;
-}
-
-
-body.brands-page .partner-logo img {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  max-width: 100%;
-  max-height: 100%;
-
-  object-fit: contain;
-
-  transition: transform 0.3s ease;
-}
-
-
-@media (hover: hover) {
-  body.brands-page .partner-card:hover
-  .partner-logo img {
-    transform: scale(1.04);
-  }
-}
-
-
-
-body.brands-page .partner-card-bottom {
-  display: flex;
   flex: 1;
-  flex-direction: column;
-  align-items: stretch;
-
-  min-width: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-}
-
-
-
-body.brands-page .partner-category,
-body.brands-page .partner-card-bottom h3 {
-  display: none;
-}
-
-
-
-
-body.brands-page .partner-card-bottom p {
-  margin: 0 0 25px;
-
-  color: inherit;
-
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.7;
-
-  text-align: left;
-
-  transition: color 0.3s ease;
-}
-
-
-
-body.brands-page .partner-products {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   width: 100%;
-
-  
-  margin-top: auto;
-  margin-bottom: 25px;
-
-  background: #ffffff;
+  min-height: 112px;
+  padding: 15px 20px;
+  margin: 12px 0;
+  border-radius: 7px;
+  background: #f2f5f7;
   overflow: hidden;
 }
 
-body.brands-page .partner-products img {
+.brands-page .brand-tab-logo-dark {
+  background: linear-gradient(135deg, #253b4b, #101e2a);
+}
+
+.brands-page .brand-tab-logo img {
   display: block;
-
   width: 100%;
-  height: 165px;
-
+  height: 82px;
+  max-width: 260px;
   object-fit: contain;
-
-  transition: transform 0.3s ease;
+  object-position: center;
+  transition: transform 0.35s ease;
 }
 
-
-@media (hover: hover) {
-  body.brands-page .partner-card:hover
-  .partner-products img {
-    transform: scale(1.04);
-  }
-}
-
-
-
-
-body.brands-page .partner-card-link {
-  display: inline-flex;
+.brands-page .brand-tab-bottom {
+  display: flex;
   align-items: center;
-  align-self: flex-start;
-
-  margin-top: auto;
-
-  color: inherit;
-
-  font-size: 15px;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-top: 5px;
+  color: #26343d;
+  font-size: 14px;
   font-weight: 750;
+  line-height: 1.4;
+}
 
-  text-decoration: none;
-
+.brands-page .brand-tab-bottom span {
+  color: #9ca8ae;
+  font-size: 20px;
   transition:
     color 0.3s ease,
-    opacity 0.3s ease;
+    transform 0.3s ease;
 }
 
-
-body.brands-page .partner-products
-+ .partner-card-link {
-  margin-top: 0;
+.brands-page .brand-tab.is-active
+.brand-tab-bottom span {
+  color: #f26422;
 }
 
-
-
-@media (max-width: 1050px) {
-
-  .brands-page .partner-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    gap: 20px;
+@media (hover: hover) {
+  .brands-page .brand-tab:hover {
+    transform: translateY(-5px);
+    border-color: #a9beb6;
+    box-shadow: 0 16px 35px rgba(22,34,43,0.09);
   }
 
-  body.brands-page .partner-card {
-    min-height: 610px;
-    padding: 25px;
+  .brands-page .brand-tab:hover
+  .brand-tab-logo img {
+    transform: scale(1.055);
   }
 
-  body.brands-page .partner-logo {
-    height: 90px;
+  .brands-page .brand-tab:hover
+  .brand-tab-bottom span {
+    color: #f26422;
+    transform: translateX(4px);
+  }
+}
+
+.brands-page .brand-tab:focus-visible {
+  outline: 3px solid #f26422;
+  outline-offset: 4px;
+}
+
+.brands-page .brand-spotlight-panels {
+  border-radius: 14px;
+  background: #17262e;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(21,35,43,0.12);
+}
+
+.brands-page .brand-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  min-height: 365px;
+  color: #ffffff;
+}
+
+.brands-page .brand-detail[hidden] {
+  display: none !important;
+}
+
+.brands-page .brand-detail-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(30px, 4.5vw, 58px);
+  min-width: 0;
+}
+
+.brands-page .brand-detail-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 23px;
+  color: #ff9761;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.brands-page .brand-detail-kicker::before {
+  content: "";
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+}
+
+.brands-page .brand-detail-main h3 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.brands-page .brand-detail-subtitle {
+  margin-bottom: 23px;
+  color: #ecf2f4;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.brands-page .brand-detail-description {
+  max-width: 570px;
+  margin-bottom: 30px;
+  color: #bdcbd0;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.brands-page .brand-detail-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid #f26422;
+  border-radius: 5px;
+  background: #f26422;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.4;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.brands-page .brand-detail-link span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.brands-page .brand-detail-link:hover {
+  background: #c9480d;
+  border-color: #c9480d;
+  transform: translateY(-2px);
+}
+
+.brands-page .brand-detail-link:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.brands-page .brand-detail-aside {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(30px, 3.5vw, 48px);
+  background: #22343d;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+.brands-page .brand-aside-label {
+  margin-bottom: 26px;
+  color: #ff9761;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.brands-page .brand-expertise-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.brands-page .brand-expertise {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  padding: 19px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.13);
+}
+
+.brands-page .brand-expertise:first-child {
+  padding-top: 0;
+}
+
+.brands-page .brand-expertise span {
+  flex-shrink: 0;
+  color: #ff9761;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.brands-page .brand-expertise p {
+  margin: 0;
+  color: #ecf2f4;
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.6;
+}
+
+.brands-page .brand-detail-count {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 30px;
+}
+
+.brands-page .brand-detail-count strong {
+  color: #ffffff;
+  font-size: 53px;
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.brands-page .brand-detail-count span {
+  color: #a8bac2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+@media (max-width: 960px) {
+  .brands-page .brand-selector {
+    gap: 12px;
+  }
+
+  .brands-page .brand-tab {
+    min-height: 180px;
+    padding: 14px;
+  }
+
+  .brands-page .brand-tab-top {
+    font-size: 9px;
+  }
+
+  .brands-page .brand-tab-logo {
     min-height: 90px;
+    padding: 12px;
   }
 
-  body.brands-page .partner-products img {
-    height: 150px;
+  .brands-page .brand-tab-logo img {
+    height: 65px;
   }
 
+  .brands-page .brand-tab-bottom {
+    font-size: 12px;
+  }
+
+  .brands-page .brand-detail {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .brands-page .brand-detail-main,
+  .brands-page .brand-detail-aside {
+    padding: 30px;
+  }
 }
-
-
-
 
 @media (max-width: 690px) {
-
-
   .brands-page .brands-hero {
-    min-height: 280px;
+    min-height: 260px;
     padding: 65px 0;
   }
 
@@ -2589,114 +2748,122 @@ body.brands-page .partner-products
   }
 
   .brands-page .brands-hero p:last-child {
+    font-size: 15px;
+  }
+
+  .brands-page .brand-spotlight-section {
+    padding: 60px 0 75px;
+  }
+
+  .brands-page .brand-spotlight-section
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .brands-page .brand-selector {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin-bottom: 14px;
+  }
+
+  .brands-page .brand-tab {
+    min-height: 122px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .brands-page .brand-tab-top {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+
+  .brands-page .brand-tab-indicator {
+    width: 5px;
+    height: 5px;
+  }
+
+  .brands-page .brand-tab-logo {
+    min-height: 60px;
+    margin: 8px 0;
+    padding: 7px;
+  }
+
+  .brands-page .brand-tab-logo img {
+    height: 45px;
+  }
+
+  .brands-page .brand-tab-bottom {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .brands-page .brand-tab-bottom span {
+    font-size: 14px;
+  }
+
+  .brands-page .brand-detail {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .brands-page .brand-detail-main {
+    padding: 30px 23px;
+  }
+
+  .brands-page .brand-detail-main h3 {
+    font-size: 32px;
+  }
+
+  .brands-page .brand-detail-subtitle {
     font-size: 16px;
   }
 
-  
-  .brands-page .brands-listing {
-    padding: 60px 0;
-  }
-
- 
-  .brands-page .partner-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
- 
-  body.brands-page .partner-card {
-    min-height: 540px;
-    padding: 25px;
-  }
-
-
-  body.brands-page .partner-logo {
-    height: 90px;
-    min-height: 90px;
-    margin-bottom: 25px;
-  }
-
- 
-  body.brands-page .partner-card-bottom p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-
-  body.brands-page .partner-products img {
-    height: 150px;
-  }
-
-  
-  body.brands-page .partner-card-link {
+  .brands-page .brand-detail-description {
     font-size: 14px;
   }
 
+  .brands-page .brand-detail-aside {
+    padding: 27px 23px;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .brands-page .brand-expertise {
+    padding: 15px 0;
+  }
+
+  .brands-page .brand-detail-count strong {
+    font-size: 42px;
+  }
 }
-
-
-
 
 @media (prefers-reduced-motion: reduce) {
-
-  body.brands-page .partner-card,
-  body.brands-page .partner-logo img,
-  body.brands-page .partner-products img {
+  .brands-page .brand-tab,
+  .brands-page .brand-tab::after,
+  .brands-page .brand-tab-logo img,
+  .brands-page .brand-tab-bottom span,
+  .brands-page .brand-detail-link {
     transition: none;
   }
-
 }
 
 
-body.brands-page .partner-card {
-  min-height: 540px;
-  padding: 24px;
+.brands-page .brand-spotlight-panels[hidden] {
+  display: none !important;
 }
 
-
-.brands-page .partner-grid {
-  gap: 20px;
+.brands-page .brand-spotlight:not(.is-open) .brand-selector {
+  margin-bottom: 0;
 }
 
-
-body.brands-page .partner-logo {
-  height: 80px;
-  min-height: 80px;
-  margin-bottom: 18px;
+.brands-page .brand-tab:not(.is-active) {
+  border-color: #e0e6e9;
 }
 
-
-body.brands-page .partner-card-bottom p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 18px;
+.brands-page .brand-tab:not(.is-active)::after {
+  transform: scaleX(0);
 }
 
-
-body.brands-page .partner-products img {
-  height: 135px;
-}
-
-
-body.brands-page .partner-products {
-  margin-bottom: 18px;
-}
-
-
-@media (max-width: 1050px) {
-  body.brands-page .partner-card {
-    min-height: 510px;
-    padding: 22px;
-  }
-}
-
-
-@media (max-width: 690px) {
-  body.brands-page .partner-card {
-    min-height: 480px;
-    padding: 20px;
-  }
-}
 
 
 
